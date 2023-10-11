@@ -1,9 +1,21 @@
-import Hero from "./assets/components/Hero"
+import React from "react";
+import Hero from "./assets/components/Hero";
 
-function App() {
-  return <Hero style={{margin: "100px"}} name="Wanda">
-    Vision
-  </Hero>
-}
+const app = () => {
+  const heros = [
+    { nome: "Flash", personagem: "Barry Allen" },
+    { nome: "Batman II", personagem: "Bruce Wayne" },
+    { nome: "Wonder Woman", personagem: "Princesa Diana" },
+  ];
 
-export default App
+  return (
+    <div>
+      {" "}
+      {heros.map((item) => (
+        <Hero key={item.nome} nome={item.nome} personagem={item.personagem} />
+      ))}
+    </div>
+  );
+};
+
+export default app;

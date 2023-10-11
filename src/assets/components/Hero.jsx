@@ -1,18 +1,12 @@
-import H1, {H3, H4} from "./H1";
-import H5 from "./H5";
+import React from "react";
 
-function Hero(props) {
-  console.log(props);
-
+const hero = ({nome, personagem}) => {
   return (
-    <div style={props.style}>
-      <H1 name={props.name} />
-      <h2 style={{color: "yellowgreen"}}>{props.children}</h2> {/* filho do props de H1*/}
-      <H3 />
-      <H4 />
-      <H5 />
+    <div>
+      <h1>{nome}</h1>
+      <h2>{personagem}</h2>
     </div>
   );
-}
+};
 
-export default Hero;
+export default hero;
