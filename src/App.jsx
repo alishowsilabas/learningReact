@@ -1,14 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 
 const app = () => {
+  const [numero, setNumero] = useState(0);
 
-    const handleClick = () => {
-      console.log("Botão Clicado")
-    }
+  const handleClick = () => {
+    setNumero(numero + 1);
+  };
 
   return (
     <div>
-      <button onClick={handleClick}>Clique</button>
+      <button onClick={handleClick}>Incremente</button>
+      {numero}
     </div>
   );
 };
