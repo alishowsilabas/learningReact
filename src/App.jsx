@@ -1,16 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
+import Contador from "./assets/components/Contador"
 
 const app = () => {
-  const [numero, setNumero] = useState(0);
-
-  const handleClick = () => {
-    setNumero((estado => estado + 1));
-  };
-
   return (
     <div>
-      <button onClick={handleClick}>Incremente</button>
-      {numero}
+      <Contador />
     </div>
   );
 };
