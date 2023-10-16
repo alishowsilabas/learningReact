@@ -1,14 +1,12 @@
 import React from "react";
-import Contador from "./assets/components/Contador"
+import Form from "./assets/components/Form"
 
-const app = () => {
+const App = () => {
   return (
     <div>
-      <Contador valorInicial={0}/>
-      <Contador valorInicial={10}/>
-      <Contador valorInicial={15}/>
+      <Form />
     </div>
   );
 };
 
-export default app;
+export default App;
