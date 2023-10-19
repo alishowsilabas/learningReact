@@ -1,12 +1,14 @@
-import React from "react";
-import Form from "./assets/components/Form"
+import "./App.css";
+import Bar from "./assets/components/Bar";
+import Foo from "./assets/components/Foo";
 
-const App = () => {
+function App() {
   return (
-    <div>
-      <Form />
+    <div className="App">
+      <Foo />
+      <Bar />
     </div>
   );
-};
+}
 
 export default App;
