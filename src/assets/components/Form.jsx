@@ -13,7 +13,8 @@ const Form = () => {
     sexo: "masculino",
   });
 
-  const handleClick = () => {
+  const handleSubmit = (event) => {
+    event.preventDefault()
     console.log(
       estado.nome +
         " " +
@@ -58,7 +59,7 @@ const Form = () => {
   }
 
   return (
-    <div>
+    <form onSubmit={handleSubmit}>
       <div>
         <input
           type="text"
@@ -118,8 +119,8 @@ const Form = () => {
         </select>
       </div>
 
-      <button onClick={handleClick}>Clique</button>
-    </div>
+      <button>Clique</button>
+      </form>
   );
 };
 
