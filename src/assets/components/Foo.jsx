@@ -1,8 +1,15 @@
 import React from "react";
-import classes from "./Foo.module.css";
+import styles from "styled-components";
 
-function Foo() {
-  return <div className={classes.color}>Foo</div>;
+const Foo = () => {
+  return (
+  <div>Foo</div>
+  )
 }
+
+const Div = styles.div` 
+    color: red;
+`
+   
 
 export default Foo;
