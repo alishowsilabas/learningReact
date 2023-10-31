@@ -1,18 +1,25 @@
-import React from "react";
-import { useEffect } from "react";
+import React, { useEffect, useState } from 'react'
+import axios from 'axios'
 
 const App = () => {
+
+  const [users, setUsers] = useState([])
+
   useEffect(() => {
-    getData();
-  }, []);
+    axios.get("https://jsonplaceholder.typicode.com/users").then(response => {
+      setUsers(response.data)
+    })
+  })
 
-  async function getData() {
-    const retorno = await fetch("https://jsonplaceholder.typicode.com/users");
-    const dados = await retorno.json();
-    console.log(dados);
-  }
+  return (
+    <div>
+      {
+        users.map(item =>{
+          return <h3 key={item.id}>{item.name}</h3>
+        })
+      }
+    </div>
+  )
+}
 
-  return <div>App</div>;
-};
-
-export default App;
+export default App
