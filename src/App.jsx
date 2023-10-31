@@ -1,25 +1,39 @@
-import React, { useEffect, useState } from 'react'
-import axios from 'axios'
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 
 const App = () => {
+  const [users, setUsers] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(false)
 
-  const [users, setUsers] = useState([])
+  const [contagem, setContagem] = useState(0)
 
   useEffect(() => {
-    axios.get("https://jsonplaceholder.typicode.com/users").then(response => {
-      setUsers(response.data)
-    })
-  })
+    setIsLoading(true);
+    setTimeout(() => {
+      console.log("A requisição foi enviada")
+    axios.get("https://jsonplaceholder.typicode.com/users").then((response) => {
+      setUsers(response.data);
+      console.log("A requisição retornou")
+      setIsLoading(false); 
+      }).catch(() => {
+        setIsLoading(false)
+        setError(true)
+      })
+    }, 2000);
+  }, [contagem]);
 
   return (
     <div>
-      {
-        users.map(item =>{
-          return <h3 key={item.id}>{item.name}</h3>
-        })
-      }
-    </div>
-  )
-}
+      <h2>{isLoading && <p>Loading...</p>}</h2>
 
-export default App
+      {users.map((item) => {
+        return <h3 key={item.id}>{item.name}</h3>;
+      })}
+      <h2>{error && <p>Algo inesperado aconteceu.</p>}</h2>
+      <button onClick={() => setContagem(contagem + 1)}>Contagem {contagem}</button>
+    </div>
+  );
+};
+
+export default App;
