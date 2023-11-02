@@ -1,12 +1,14 @@
 import React, { useContext } from "react";
-import { Contexto } from "../../App";
-
+import { useContextoUsuario } from "../../store/ContextoUsuario";
 
 const Filho = () => {
-  const contexto = useContext(Contexto);
-  console.log(contexto);
+ const contexto = useContextoUsuario();
 
-  return <div>{contexto.nome} {contexto.sobrenome}</div>;
+  return (
+    <div>
+      {contexto.nome} {contexto.sobrenome}
+    </div>
+  );
 };
 
 export default Filho;

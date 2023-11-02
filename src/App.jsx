@@ -1,14 +1,12 @@
 import React, { createContext } from "react";
 import Filho from "./assets/components/Filho";
-
-export const Contexto = createContext();
-console.log(Contexto);
+import ContextoUsuario from "./store/ContextoUsuario";
 
 const App = () => {
   return (
-    <Contexto.Provider value={{nome: "João", sobrenome: "Morais"}}>
+    <ContextoUsuario>
       <Filho />
-    </Contexto.Provider>
+    </ContextoUsuario>
   );
 };
 
