@@ -1,12 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import { useContext } from "react";
 import { createContext } from "react";
 
 const Contexto = createContext();
 
 const ContextoUsuario = ({children}) => {
+
+  const [contagem, setContagem] = useState(0);
+
   return (
-    <Contexto.Provider value={{ nome: "João", sobrenome: "Morais" }}>
+    <Contexto.Provider value={{contagem, setContagem}}>
       {children}
     </Contexto.Provider>
   );

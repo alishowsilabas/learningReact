@@ -1,12 +1,14 @@
-import React, { useContext } from "react";
+import React from "react";
+import Neto from "./Neto";
 import { useContextoUsuario } from "../../store/ContextoUsuario";
 
 const Filho = () => {
- const contexto = useContextoUsuario();
-
+  console.log("Component Filho");
+  const {contagem, setContagem} = useContextoUsuario();
   return (
     <div>
-      {contexto.nome} {contexto.sobrenome}
+      <p>Contagem: {contagem}</p>
+      <Neto />
     </div>
   );
 };
