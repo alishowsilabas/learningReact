@@ -1,27 +1,66 @@
-import React, { useReducer, useRef } from "react";
-import {reducer, inititalState} from "./store/reducer";
-import { INCREMENTA, REDUZ } from "./store/action";
+import React, { useEffect, useReducer } from "react";
+
+const fetchInitialState = {
+  data: null,
+  isLoading: false,
+  error: null,
+};
+
+const fetchReducer = (state, action) => {
+  if (action.type === "START") {
+    console.log("START");
+    return {
+      data: null,
+      isLoading: true,
+      erro: null,
+    };
+  }
+
+  if (action.type === "SUCCESS") {
+    console.log("SUCCESS");
+    return {
+      data: action.payload,
+      isLoading: false,
+      error: null,
+    };
+  }
+  if (action.type === "ERROR") {
+    console.log("ERROR");
+    return {
+      data: null,
+      isLoading: false,
+      error: action.payload,
+    };
+  }
+
+  return state;
+};
 
 const App = () => {
-  const [state, dispatch] = useReducer(reducer, inititalState);
-  const meuInput = useRef();
+  const [state, dispatch] = useReducer(fetchReducer, fetchInitialState);
+  useEffect(() => {
+    fetchData();
+  }, []);
 
-  const handleClickIncrementar = () => {
-    const valor = Number(meuInput.current.value);
-    dispatch({ type: INCREMENTA, payload: { valor } });
-  };
-
-  const handleClickReduzir = () => {
-    const valor = Number(meuInput.current.value);
-    dispatch({ type: REDUZ, payload: { valor } });
-  };
+  async function fetchData() {
+    dispatch({ type: "START" });
+    try {
+      const retorno = await fetch("https://jsonplaceholder.typicode.com/usersaaa");
+      if (!retorno.ok) {
+        throw new Error("Houve um erro inesperado");
+      }
+      const dados = await retorno.json();
+      dispatch({ type: "SUCCESS", payload: dados });
+    } catch (error) {
+      dispatch({ type: "ERROR", payload: error });
+    }
+  }
 
   return (
     <div>
-      <p>Contagem: {state.contador}</p>
-      <input type="number" ref={meuInput} />
-      <button onClick={handleClickIncrementar}>Incremente</button>
-      <button onClick={handleClickReduzir}>Reduzir</button>
+      {state.isLoading && <p>Is Loading...</p>}
+      {state.error && <p>Houve um erro inesperado...</p>}
+      {state.data && <p>{state.data.length}</p>}
     </div>
   );
 };
