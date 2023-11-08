@@ -1,22 +1,6 @@
 import React, { useReducer, useRef } from "react";
-
-const reducer = (prevState, action) => {
-  if (action.type === "incrementa") {
-    return {
-      contador: prevState.contador + action.payload.valor,
-    };
-  }
-  if (action.type === "reduzir") {
-    return {
-      contador: prevState.contador - action.payload.valor,
-    };
-  }
-  return prevState;
-};
-
-const inititalState = {
-  contador: 0,
-};
+import {reducer, inititalState} from "./store/reducer";
+import { INCREMENTA, REDUZ } from "./store/action";
 
 const App = () => {
   const [state, dispatch] = useReducer(reducer, inititalState);
@@ -24,12 +8,12 @@ const App = () => {
 
   const handleClickIncrementar = () => {
     const valor = Number(meuInput.current.value);
-    dispatch({ type: "incrementa", payload: { valor } });
+    dispatch({ type: INCREMENTA, payload: { valor } });
   };
 
   const handleClickReduzir = () => {
     const valor = Number(meuInput.current.value);
-    dispatch({ type: "reduzir", payload: { valor } });
+    dispatch({ type: REDUZ, payload: { valor } });
   };
 
   return (
